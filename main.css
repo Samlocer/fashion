@@ -1,0 +1,108 @@
+*{margin: 0; border: 0;}
+body{background-color: darkgrey;}
+nav{background-color: blueviolet; padding: 20px;}
+nav a:hover {color: skyblue;}
+li{list-style: none; display: inline-block;}
+a{text-decoration: none; color: white; padding: 10px; transition: color 0.2s ease;}
+h1{color: white; font-size: 80px; padding: 20; text-align-last: center; font-family: cursive;}
+.contenedor{width: 80%; margin: auto; display: flex; justify-content: space-between;}
+img{width: 400px; margin: 10px; border-radius: 15px;}
+h2{text-align-last: center;
+ margin: auto; background-color: rgba(250, 250, 250, .5);
+  width: 300px; padding: 15px; font-family: cursive; color: white;}
+div.imagenes{
+	width: 50%; 
+	right: 0;
+	left: 0;
+	margin: auto;
+	display: flex;
+	justify-content: space-around;
+}
+div.imagenes img{
+	width: 40%;
+	height: 160px;
+	margin: 15px;
+
+}
+footer{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	justify-content: space-around;
+	align-items: center;
+	background-color: black;
+	padding: 20px 10px;
+	
+}
+footer div.copy{
+	color: white;
+}
+footer div.copy p{
+	padding: 15px 5px;
+	font-size: 20px;
+}
+footer div.redes a{
+	color: white;
+	padding: 0px 12px;
+	text-decoration: none;
+	font-size: 25px;
+}
+body{
+	position: relative;
+}
+div.noticias{
+	display: flex;
+	justify-content: center;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+div.noticias div{
+	width: 300px;
+}
+div.noticias div div.desc{
+	background-color: blueviolet;
+	padding: 10px;
+}
+div.noticias div img{
+	width: 100%;
+	position: relative;
+}
+div.noticias div h3{
+	font-size: 23px;
+	color: white;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+h4{
+	color: white;
+	font-size: 25px;
+}
+
+.btn{
+	background-color: blueviolet;
+	border: 2px solid white;
+	color: rgb(255,245,240);
+	padding: 1rem 1.5rem;
+	font-size: 15px;
+	width: 12%;
+	border-radius: .5rem;
+	cursor: pointer;
+	margin-top: 25px;
+	text-align: center;
+	box-shadow: .5rem .5rem 1rem blueviolet,
+	-.5rem -.5rem 1rem blueviolet;
+	font-weight: semibold;
+	transition: all 1s ease;
+}
+
+.btn:hover{
+	box-shadow: .5rem .5rem 1rem #5500FF,
+	-.5rem -.5rem 1rem #0013FF;
+}
+
+.btn:active{
+	box-shadow: inset .5rem .5rem 1rem #5500FF,
+	inset -.2rem -.2rem 1rem #0013FF;
+}

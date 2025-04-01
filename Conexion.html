@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>consulta db</title>
+    <style type="text/css">
+     
+      table {
+        border: solid 2px #7e7c7c;
+        border-collapse: collapse;
+                     
+      }
+     
+      th, h1 {
+        background-color: #edf797;
+      }
+
+      td,
+      th {
+        border: solid 1px #7e7c7c;
+        padding: 2px;
+        text-align: center;
+      }
+
+
+    </style>
+</head>
+<body>
+    
+</body>
+</html>
+
+<?php
+$user = "root";
+$pass = "";
+$host = "localhost";
+$bd = "DBProyectoG";
+$db_port = "3306";
+
+
+$conexion = mysqli_connect($host, $user, $pass, $bd, $db_port);
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+$nombre = $_POST['Nombre'];
+$correo = $_POST['Correo'];
+$telefono = $_POST['Telefono'];
+$texto = $_POST['Texto'];
+
+
+}
+
+if(!$conexion){
+  echo "No se ha podido conectar al servidor" . mysql_error();
+}
+else{
+  echo "<b><h3>Hemos conectado al servidor</h3></b>";
+}
+$bd = "DBProyectoG";
+
+$db = mysqli_select_db($conexion,$bd);
+
+if (!$db){
+  echo "No se ha podido encontrar la tabla";
+}
+else{
+  echo "<h3>Tabla seleccionada:</h3>";
+}
+
+$instruccion_SQL = "INSERT INTO Usuarios VALUES('$nombre','$correo','$telefono','$texto')";
+
+$resultado = mysqli_query($conexion,$instruccion_SQL);
+
+$consulta = "SELECT * FROM Usuarios";
+        
+$result = mysqli_query($conexion,$consulta);
+if(!$result) 
+{
+    echo "No se ha podido realizar la consulta";
+}
+echo "<table>";
+echo "<tr>";
+echo "<th><h1>Nombre</th></h1>";
+echo "<th><h1>Correo</th></h1>";
+echo "<th><h1>Telefono</th></h1>";
+echo "<th><h1>Texto</th></h1>";
+echo "</tr>";
+
+while ($colum = mysqli_fetch_array($result))
+ {
+    echo "<tr>";
+    echo "<td><h2>" . $colum['Nombre']. "</td></h2>";
+    echo "<td><h2>" . $colum['Correo'] . "</td></h2>";
+    echo "<td><h2>" . $colum['Telefono'] . "</td></h2>";
+    echo "<td><h2>" . $colum['Texto'] . "</td></h2>";
+    echo "</tr>";
+}
+echo "</table>";
+
+mysqli_close( $conexion );
+
+   //echo "Fuera " ;
+   echo'<a href="Contacto.html"> Volver Atrás</a>';
+$mail = new PHPMailer;
+    $mail->isSMTP(); 
+    $mail->SMTPDebug = 0; // 0 = off (for production use) - 1 = client messages - 2 = client and server messages
+    $mail->Host = "smtp.gmail.com"; // use $mail->Host = gethostbyname('smtp.gmail.com'); // if your network does not support SMTP over IPv6
+    $mail->Port = 587; // TLS only
+    $mail->SMTPSecure = 'tls'; // ssl is deprecated
+    $mail->SMTPAuth = true;
+    $mail->Username = 'marina.gonzalez8310@alumnos.udg.mx'; // email
+    $mail->Password = ''; // password
+    $mail->setFrom('gomezn_miguel@hotmail.com', $nombre); 
+    $mail->addAddress('gomezn_miguel@hotmail.com', 'Holi :3'); //Al que se lo mandes
+    $mail->Subject = 'Nuevo mensaje de contacto desde tu sitio web';
+    $mail->Body = "Nombre: $nombre \n Correo: $correo \n Teléfono: $telefono \n Mensaje: $texto";
+
+    $mail->AltBody = 'HTML messaging not supported'; // If html emails are not supported by the receiver, show this body
+    $mail->SMTPOptions = array(
+        'ssl' => array(
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+            'allow_self_signed' => true
+        )
+    );
+
+    if(!$mail->send()){
+        echo "Mensaje no enviado. Error: " . $mail->ErrorInfo;
+    } else {
+        echo "Mensaje enviado!";
+    }
+
+    $conn->close();
+
+?>
